@@ -1,24 +1,21 @@
 import React from 'react';
+import Navigation from './components/Navigation'
+import {HashRouter,Route,Routes} from 'react-router-dom';  
+import About from './routes/About';
+import Home from './routes/Home';
+import Detail from './routes/Detail';
 
-class App extends React.Component {
-  state = {
-    isLoading: true,
-    movies:[],
-  }
-
-  componentDidMount(){
-    setTimeout(()=>{ 
-      this.setState({isLoading:false,});
-    },5000)
-  }
-  render() {
-    const {isLoading} = this.state; 
-    return (
-      <div>
-        {isLoading? 'loading...':'we are ready'}
-      </div>
-    );
-  }
-}
+const App = () => {
+  return (
+      <HashRouter>
+        <Navigation/>
+        <Routes>
+          <Route path="/" element={<Home/>}/>
+          <Route path="/about" element={<About/>}/>
+          <Route path="/detail/:id" element={<Detail/>}/>
+        </Routes>
+      </HashRouter>
+  );
+};
 
 export default App;
